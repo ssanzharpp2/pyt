@@ -1,0 +1,7 @@
+tup = ("car",1, 56, "ship", "bike","plane","car")
+print(tup)
+print(len(tup))
+tup1 = ("car",)
+print(type(tup1))
+tup2 = tuple(("car", "plane", "train"))
+print(tup2)
