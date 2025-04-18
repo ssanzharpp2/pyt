@@ -5,7 +5,7 @@ import psycopg2
 from pconfig import load_config
 
 
-def get_or_create_user(username):
+def user(username):
     config = load_config()
     conn = psycopg2.connect(**config)
     cur = conn.cursor()
@@ -33,7 +33,7 @@ def get_or_create_user(username):
 
     return conn, cur, user_id, level, score
 
-def save_progress(cur, conn, user_id, level, score):
+def save(cur, conn, user_id, level, score):
     cur.execute("UPDATE user_score SET level = %s, score = %s, saved_at = NOW() WHERE user_id = %s",
                 (level, score, user_id))
     conn.commit()
@@ -156,7 +156,7 @@ def show_game_over(surface):
 
 def main():
     username = input("Nickname: ")
-    conn, cur, user_id, saved_level, saved_score = get_or_create_user(username)
+    conn, cur, user_id, saved_level, saved_score = user(username)
 
     snake = Snake()
     snake.level = saved_level
@@ -170,7 +170,7 @@ def main():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                save_progress(cur, conn, user_id, snake.level, snake.score)
+                save(cur, conn, user_id, snake.level, snake.score)
                 pygame.quit()
                 return
             elif event.type == pygame.KEYDOWN:

@@ -2,7 +2,6 @@ import psycopg2
 from config import load_config
 
 def create_table():
-    """ Create tables in the PostgreSQL database"""
     commands = [
         """
         CREATE TABLE IF NOT EXISTS PhoneBook (

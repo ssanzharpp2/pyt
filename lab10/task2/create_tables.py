@@ -3,7 +3,6 @@ from pconfig import load_config
 
 
 def create_tables():
-    """ Create tables in the PostgreSQL database"""
     commands = [
         """
         CREATE TABLE IF NOT EXISTS users (
