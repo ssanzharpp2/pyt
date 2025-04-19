@@ -185,7 +185,7 @@ def main():
                         snake.D = (1, 0)
                     elif event.key == pygame.K_p:
                         print("Pause. Your progress has been saved.")
-                        save_progress(cur, conn, user_id, snake.level, snake.score)
+                        save(cur, conn, user_id, snake.level, snake.score)
                         paused = True
                         while paused:
                             for pause_event in pygame.event.get():
@@ -233,7 +233,7 @@ def main():
             pygame.display.update()
             clock.tick(current_speed)
         else:
-            save_progress(cur, conn, user_id, snake.level, snake.score)
+            save(cur, conn, user_id, snake.level, snake.score)
             show_game_over(screen)
 
 if __name__ == "__main__":
